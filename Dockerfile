@@ -12,7 +12,7 @@ RUN apt-get install make git supervisor
 RUN service supervisor stop
 
 # Clone the Mailpile repo to the root directory
-git clone -b release/beta https://github.com/pagekite/Mailpile.git /Mailpile
+RUN git clone -b release/beta https://github.com/pagekite/Mailpile.git /Mailpile
 
 # NOTE: Mailpile's Makefile handles installing the Mailpile dependencies via APT
 ADD Makefile /Mailpile/Makefile
