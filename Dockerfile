@@ -8,9 +8,6 @@ RUN echo "APT::Get::Assume-Yes true;" >> /etc/apt/apt.conf
 
 RUN apt-get install make git supervisor
 
-# Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 # We need to add a config file for supervisor, so stop the service that was auto-started on intstall
 RUN service supervisor stop
 
@@ -28,13 +25,14 @@ ADD . /Mailpile
 # Setup
 RUN ./mp setup
 
-# start Mailpile service via supervisor
-
 # Initialization and Startup Script (start Mailpile via supervisor)
 ADD ./start.sh /start.sh
 RUN chmod 755 /start.sh
 
 EXPOSE 33411
 VOLUME /.mailpile
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 CMD ["/bin/bash", "/start.sh"]
