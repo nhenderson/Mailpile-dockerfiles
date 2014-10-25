@@ -15,7 +15,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN service supervisor stop
 
 # Clone the Mailpile repo to the root directory
-git clone -b release/beta https://github.com/pagekite/Mailpile.git /
+git clone -b release/beta https://github.com/pagekite/Mailpile.git /Mailpile
 
 # NOTE: Mailpile's Makefile handles installing the Mailpile dependencies via APT
 ADD Makefile /Mailpile/Makefile
